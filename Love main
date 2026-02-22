@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love App</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  font-family: Arial, sans-serif;
+}
+
+#card {
+  position: relative;
+  width: 320px;
+  height: 360px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  padding-top: 20px;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 10px 25px;
+}
+
+#yes {
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #28a745;
+  color: white;
+}
+
+#no {
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #dc3545;
+  color: white;
+  position: absolute;
+  left: 110px;
+  top: 220px;
+}
+
+#result {
+  display: none;
+  font-size: 22px;
+  color: #ff416c;
+  font-weight: bold;
+  margin-top: 120px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="card">
+  <h2 id="question">Do You Love Krishnendu? 😄</h2>
+
+  <button id="yes">Yes</button>
+  <button id="no">No</button>
+
+  <div id="result">wow! Nice Choice 😍</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const card = document.getElementById("card");
+
+noBtn.addEventListener("touchstart", move);
+noBtn.addEventListener("mouseover", move);
+
+function move() {
+  const cardWidth = card.clientWidth;
+  const cardHeight = card.clientHeight;
+
+  const minY = 120;  // below question + yes button
+  const maxY = cardHeight - noBtn.offsetHeight - 10;
+
+  const maxX = cardWidth - noBtn.offsetWidth - 10;
+
+  const x = Math.random() * maxX;
+  const y = minY + Math.random() * (maxY - minY);
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+yesBtn.addEventListener("click", () => {
+  document.getElementById("question").style.display = "none";
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+  document.getElementById("result").style.display = "block";
+});
+</script>
+
+</body>
+</html>
